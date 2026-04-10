@@ -178,7 +178,14 @@
 .tag-teal { border-color: rgba(13, 148, 136, 0.3); color: var(--teal-accent); }
 
 /* Sakura Petals */
-.sakura-petal { position: absolute; background: #ffb7c5; border-radius: 150% 0 150% 0; pointer-events: none; animation: fall linear infinite; }
+.sakura-petal { position: absolute; 
+               will-change: transform; 
+               backface-visibility: hidden;
+               background: #ffb7c5; 
+               border-radius: 150% 0 150% 0; 
+               pointer-events: none; 
+               animation: fall linear infinite; 
+              }
 @keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
 
 :root {
