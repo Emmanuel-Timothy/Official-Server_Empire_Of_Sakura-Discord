@@ -7,6 +7,8 @@
 const SERVER_ID = "1331558582394814474";
 const REFRESH_RATE = 20000; // 20 Detik
 
+const isMobileDevice = () => window.matchMedia('(pointer: coarse), (max-width: 768px)').matches;
+
 // --- 2. DISCORD DATA SYNC (LIVE STATUS & AVATARS) ---
 async function syncEmpireData() {
     try {
@@ -71,7 +73,7 @@ async function syncEmpireData() {
 // --- 3. SAKURA FALLING ANIMATION (VERSI ENTENG) ---
 function startSakura() {
     const container = document.getElementById('sakura-container'); 
-    if (!container) return;
+    if (!container || isMobileDevice()) return;
 
     let isVisible = !document.hidden;
     document.addEventListener('visibilitychange', () => {
@@ -79,23 +81,23 @@ function startSakura() {
     });
 
     setInterval(() => {
-        if (!isVisible || container.children.length > 10) return;
+        if (!isVisible || container.children.length > 8) return;
 
         const petal = document.createElement('div');
         petal.className = 'sakura-petal';
         
-        const size = Math.random() * 6 + 4 + 'px';
-        const duration = Math.random() * 4 + 4;
+        const size = Math.random() * 5 + 4 + 'px';
+        const duration = Math.random() * 3 + 5;
         
         petal.style.left = Math.random() * 100 + 'vw';
         petal.style.width = size;
         petal.style.height = size;
-        petal.style.opacity = Math.random() * 0.6 + 0.2;
+        petal.style.opacity = Math.random() * 0.4 + 0.3;
         petal.style.animationDuration = duration + 's';
         
         container.appendChild(petal);
         setTimeout(() => petal.remove(), (duration + 1) * 1000);
-    }, 1000);
+    }, 1200);
 }
 
 // --- 4. REVEAL ON SCROLL ANIMATION ---
