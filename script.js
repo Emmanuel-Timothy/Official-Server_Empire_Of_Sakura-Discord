@@ -68,25 +68,33 @@ async function syncEmpireData() {
     } catch (e) { console.error("Discord Sync Error:", e); }
 }
 
-// --- 3. SAKURA FALLING ANIMATION ---
+// --- 3. SAKURA FALLING ANIMATION (VERSI ENTENG) ---
 function startSakura() {
-    // Pastiin ID-nya sama kyk di HTML lu wak
     const container = document.getElementById('sakura-container'); 
     if(!container) return;
 
+    // Jarangin intervalnya biar gak numpuk (700ms - 800ms itu udah pas banget)
     setInterval(() => {
+        // Cek jumlah kelopak, kalau udah lebih dari 15, jangan bikin lagi (Limitasi)
+        if (container.children.length > 15) return; 
+
         const petal = document.createElement('div');
-        petal.className = 'sakura-petal'; // Nama class sesuaikan kyk di CSS
+        petal.className = 'sakura-petal';
+        
+        const size = Math.random() * 6 + 4 + 'px'; // Ukuran diperkecil dikit biar tajam
+        const duration = Math.random() * 4 + 4; // Jatuh lebih cepet (4s - 8s)
         
         petal.style.left = Math.random() * 100 + 'vw';
-        petal.style.width = petal.style.height = Math.random() * 7 + 5 + 'px';
-        petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+        petal.style.width = size;
+        petal.style.height = size;
+        petal.style.opacity = Math.random() * 0.6 + 0.2; // Random transparansi
+        petal.style.animationDuration = duration + 's';
         
         container.appendChild(petal);
         
-        // Hapus biar gak menuh-menuhin RAM
-        setTimeout(() => petal.remove(), 10000);
-    }, 400);
+        // Hapus lebih cepet sesuai durasi jatuh + 1 detik buffer
+        setTimeout(() => petal.remove(), (duration + 1) * 1000);
+    }, 700); 
 }
 
 // --- 4. REVEAL ON SCROLL ANIMATION ---
@@ -119,8 +127,8 @@ function initCustomCursor() {
     });
 
     function animateCursor() {
-        outlineX += (mouseX - outlineX) * 0.15;
-        outlineY += (mouseY - outlineY) * 0.15;
+        outlineX += (mouseX - outlineX) * 0.25;
+        outlineY += (mouseY - outlineY) * 0.25;
         outline.style.left = outlineX + 'px';
         outline.style.top = outlineY + 'px';
         requestAnimationFrame(animateCursor);
