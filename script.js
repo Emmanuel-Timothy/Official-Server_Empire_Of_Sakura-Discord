@@ -122,21 +122,20 @@ function initCustomCursor() {
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        dot.style.left = mouseX + 'px';
-        dot.style.top = mouseY + 'px';
+        dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${isMouseDown ? 2 : 1})`;
     });
 
+    let isMouseDown = false;
     function animateCursor() {
         outlineX += (mouseX - outlineX) * 0.25;
         outlineY += (mouseY - outlineY) * 0.25;
-        outline.style.left = outlineX + 'px';
-        outline.style.top = outlineY + 'px';
+        outline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%) scale(${isMouseDown ? 0.5 : 1})`;
         requestAnimationFrame(animateCursor);
     }
     animateCursor();
 
     // Hover effect
-    const interactiveEls = document.querySelectorAll('a, button, .authority-card, .moment-item');
+    const interactiveEls = document.querySelectorAll('a, button, .authority-card, .moment-item, .moment-item-v2');
     interactiveEls.forEach(el => {
         el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
         el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -144,12 +143,14 @@ function initCustomCursor() {
 
     // Click effect
     document.addEventListener('mousedown', () => {
-        dot.style.transform = 'translate(-50%, -50%) scale(2)';
-        outline.style.transform = 'translate(-50%, -50%) scale(0.5)';
+        isMouseDown = true;
+        dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(2)`;
+        outline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%) scale(0.5)`;
     });
     document.addEventListener('mouseup', () => {
-        dot.style.transform = 'translate(-50%, -50%) scale(1)';
-        outline.style.transform = 'translate(-50%, -50%) scale(1)';
+        isMouseDown = false;
+        dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(1)`;
+        outline.style.transform = `translate3d(${outlineX}px, ${outlineY}px, 0) translate(-50%, -50%) scale(1)`;
     });
 }
 
