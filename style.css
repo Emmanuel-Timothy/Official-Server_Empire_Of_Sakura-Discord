@@ -5,11 +5,11 @@
 
         body {
             background-color: var(--night-bg);
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             overflow-x: hidden;
         }
 
-        h1, h2 { font-family: 'Syne', sans-serif; }
+        h1, h2 { font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; }
 
         /* Efek Neon Pink */
         .neon-text {
@@ -254,23 +254,35 @@ html {
 body {
     background: radial-gradient(circle at top center, #1a0505 0%, #050505 100%);
     background-attachment: fixed;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* Tambahkan awan kabut merah samar di background */
+/* Tambahkan awan kabut merah samar di background tanpa memanggil server eksternal */
 body::before {
     content: '';
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/stardust.png');
-    opacity: 0.2;
+    background: radial-gradient(circle at top, rgba(236,72,153,0.08), transparent 22%),
+                radial-gradient(circle at 20% 60%, rgba(220,38,38,0.05), transparent 18%),
+                radial-gradient(circle at 80% 25%, rgba(248,113,113,0.06), transparent 20%);
     pointer-events: none;
     z-index: -1;
 }
 
-/* Sembunyikan kursor asli bawaan Windows */
-html, body {
-    cursor: none !important;
+/* Sembunyikan kursor asli hanya pada perangkat pointer halus */
+@media (hover: hover) and (pointer: fine) {
+    html, body {
+        cursor: none !important;
+    }
 }
+
+@media (hover: none), (pointer: coarse) {
+    #cursor-dot, #cursor-outline {
+        display: none !important;
+    }
+}
+
+h1, h2 { font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; }
 
 /* Titik Presisi */
 #cursor-dot {

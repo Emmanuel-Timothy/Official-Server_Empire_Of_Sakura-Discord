@@ -71,30 +71,31 @@ async function syncEmpireData() {
 // --- 3. SAKURA FALLING ANIMATION (VERSI ENTENG) ---
 function startSakura() {
     const container = document.getElementById('sakura-container'); 
-    if(!container) return;
+    if (!container) return;
 
-    // Jarangin intervalnya biar gak numpuk (700ms - 800ms itu udah pas banget)
+    let isVisible = !document.hidden;
+    document.addEventListener('visibilitychange', () => {
+        isVisible = !document.hidden;
+    });
+
     setInterval(() => {
-        // Cek jumlah kelopak, kalau udah lebih dari 15, jangan bikin lagi (Limitasi)
-        if (container.children.length > 15) return; 
+        if (!isVisible || container.children.length > 10) return;
 
         const petal = document.createElement('div');
         petal.className = 'sakura-petal';
         
-        const size = Math.random() * 6 + 4 + 'px'; // Ukuran diperkecil dikit biar tajam
-        const duration = Math.random() * 4 + 4; // Jatuh lebih cepet (4s - 8s)
+        const size = Math.random() * 6 + 4 + 'px';
+        const duration = Math.random() * 4 + 4;
         
         petal.style.left = Math.random() * 100 + 'vw';
         petal.style.width = size;
         petal.style.height = size;
-        petal.style.opacity = Math.random() * 0.6 + 0.2; // Random transparansi
+        petal.style.opacity = Math.random() * 0.6 + 0.2;
         petal.style.animationDuration = duration + 's';
         
         container.appendChild(petal);
-        
-        // Hapus lebih cepet sesuai durasi jatuh + 1 detik buffer
         setTimeout(() => petal.remove(), (duration + 1) * 1000);
-    }, 700); 
+    }, 1000);
 }
 
 // --- 4. REVEAL ON SCROLL ANIMATION ---
@@ -110,14 +111,35 @@ function reveal() {
     });
 }
 
+function initReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, observerInstance) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observerInstance.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+    } else {
+        reveal();
+        window.addEventListener('scroll', reveal, { passive: true });
+    }
+}
+
 // --- 5. CUSTOM CURSOR (SMOOTH LERP) ---
 function initCustomCursor() {
+    if (!window.matchMedia('(pointer:fine)').matches) return;
+
     const dot = document.getElementById('cursor-dot');
     const outline = document.getElementById('cursor-outline');
     if(!dot || !outline) return;
 
     let mouseX = 0, mouseY = 0;
     let outlineX = 0, outlineY = 0;
+    let isMouseDown = false;
 
     document.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
@@ -125,7 +147,6 @@ function initCustomCursor() {
         dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(${isMouseDown ? 2 : 1})`;
     });
 
-    let isMouseDown = false;
     function animateCursor() {
         outlineX += (mouseX - outlineX) * 0.25;
         outlineY += (mouseY - outlineY) * 0.25;
@@ -134,14 +155,12 @@ function initCustomCursor() {
     }
     animateCursor();
 
-    // Hover effect
     const interactiveEls = document.querySelectorAll('a, button, .authority-card, .moment-item, .moment-item-v2');
     interactiveEls.forEach(el => {
         el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
         el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
     });
 
-    // Click effect
     document.addEventListener('mousedown', () => {
         isMouseDown = true;
         dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) scale(2)`;
@@ -184,8 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
     syncEmpireData();
     startSakura();
     initCustomCursor();
-    reveal(); // Jalankan sekali buat ngecek elemen yang udah di layar
+    initReveal();
     
-    window.addEventListener("scroll", reveal);
     setInterval(syncEmpireData, REFRESH_RATE);
 });

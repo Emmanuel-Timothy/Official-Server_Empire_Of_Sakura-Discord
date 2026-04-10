@@ -11,9 +11,6 @@
     <link href="tailwind.css" rel="stylesheet">
     <!-- Ganti icon tab browser pake bendera lu -->
     <link rel="icon" type="image/x-icon" href="img/upscalemedia-transformed.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 </head>
 <body class="text-gray-200">
@@ -65,7 +62,7 @@
         
         <!-- Kita kasih absolute supaya dia melayang di background -->
         <div class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-            <img src="img/Offical flag.jpg" alt="Hero background" width="1000" height="1000" loading="eager" decoding="async"
+            <img src="img/Offical flag.jpg" alt="Hero background" width="1000" height="1000" loading="lazy" decoding="async" aria-hidden="true"
                 class="absolute w-[180%] md:w-[130%] max-w-none opacity-[0.04] grayscale brightness-150 animate-[spin_80s_linear_infinite]" 
                 style="mix-blend-mode: screen; z-index: 0;">
         </div>
@@ -700,6 +697,6 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
