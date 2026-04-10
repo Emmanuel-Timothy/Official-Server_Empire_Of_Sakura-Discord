@@ -323,6 +323,16 @@ body::before {
     }
 }
 
+/* Remove all CSS animations and transitions */
+*, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+}
+
+html {
+    scroll-behavior: auto !important;
+}
+
 h1, h2 { font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; }
 
 /* Titik Presisi */
