@@ -296,10 +296,10 @@ body::before {
         background: rgba(8, 8, 8, 0.85) !important;
     }
 
-    .animate-[spin_80s_linear_infinite],
+    .animate-\[spin_80s_linear_infinite\],
     .animate-pulse,
     .animate-ping,
-    .animate-[load_2s_ease-in-out_infinite] {
+    .animate-\[load_2s_ease-in-out_infinite\] {
         animation: none !important;
     }
 
