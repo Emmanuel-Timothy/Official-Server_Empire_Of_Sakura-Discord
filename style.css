@@ -1,0 +1,340 @@
+        :root {
+            --sakura-pink: #ff85a1;
+            --night-bg: #0a0a0c;
+        }
+
+        body {
+            background-color: var(--night-bg);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2 { font-family: 'Syne', sans-serif; }
+
+        /* Efek Neon Pink */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(255, 133, 161, 0.5), 0 0 20px rgba(255, 133, 161, 0.3);
+        }
+
+        .neon-border {
+            box-shadow: 0 0 15px rgba(255, 133, 161, 0.2);
+            border: 1px solid rgba(255, 133, 161, 0.3);
+        }
+
+        /* Animasi Kelopak Sakura */
+        .petal {
+            position: absolute;
+            background: linear-gradient(to bottom right, #ffb7c5, #ff85a1);
+            border-radius: 150% 0 150% 0;
+            pointer-events: none;
+            z-index: 1;
+            animation: sakura-fall linear infinite;
+        }
+
+        @keyframes sakura-fall {
+            0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg) translateX(100px); opacity: 0; }
+        }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 133, 161, 0.4);
+            transform: translateY(-5px);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0c; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #ff85a1; }
+
+        :root {
+    --bg-color: #050505;
+    --card-bg: #0d0d0d;
+    --red-accent: #dc2626;
+    --green-accent: #16a34a;
+    --teal-accent: #0d9488;
+    --text-gray: #6b7280;
+}
+
+.authority-section {
+    background-color: var(--bg-color);
+    padding: 80px 20px;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.section-header { text-align: center; margin-bottom: 60px; }
+.title { font-size: 3rem; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: -2px; }
+.highlight { color: var(--red-accent); }
+.divider-main { width: 60px; height: 4px; background: var(--red-accent); margin: 15px auto; border-radius: 10px; opacity: 0.5; }
+
+/* Grid & Cards */
+.staff-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+
+.authority-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 40px;
+    padding: 50px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: 0.4s ease;
+}
+
+.authority-card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.1); }
+
+.authority-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #0d0d0d, #080808);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Garis kilatan cahaya yang lewat */
+.authority-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+    transform: rotate(45deg);
+    transition: 0.8s;
+}
+
+.authority-card:hover::after {
+    left: 120%;
+    top: 120%;
+}
+
+.authority-card:hover {
+    border-color: rgba(220, 38, 38, 0.4); /* Merah samar pas di hover */
+    transform: scale(1.02);
+}
+
+.kanji-watermark {
+    position: absolute;
+    top: 10px;     /* Atur posisi dari atas */
+    right: 30px;    /* Atur posisi dari kanan */
+    font-size: 9rem; /* Ukuran Kanji (GEDE) */
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.05); /* Warna Putih Samar */
+    z-index: 0;     /* Di belakang konten utama */
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+}
+
+/* Biar teks gak ketutup Kanji, kasih z-index di kontennya */
+.relative.z-10 {
+    z-index: 10;
+}
+
+/* Avatar Styles */
+.avatar-wrapper { position: relative; margin-bottom: 25px; z-index: 10; }
+.avatar-ring { width: 130px; height: 130px; border-radius: 50%; padding: 4px; background: #050505; border: 2px solid rgba(255,255,255,0.05); }
+.discord-avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; transition: 0.7s ease; }
+.badge-icon {
+    position: absolute; bottom: 5px; right: 5px;
+    background: #111; padding: 6px; border-radius: 10px; font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Typography */
+.staff-name { font-size: 1.6rem; font-weight: 900; font-style: italic; text-transform: uppercase; text-align: center; letter-spacing: -1px; }
+.role-tag { margin-top: 15px; padding: 5px 20px; border-radius: 50px; border: 1px solid; display: flex; align-items: center; gap: 8px; }
+.role-text { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: #333; }
+.card-line { width: 100%; height: 1px; background: rgba(255,255,255,0.05); margin: 35px 0; }
+.quote { font-size: 11px; font-style: italic; color: var(--text-gray); text-align: center; line-height: 1.6; padding: 0 10px; }
+
+/* Role Specific Colors */
+.card-red .badge-icon { background: var(--red-accent); }
+.tag-red { border-color: rgba(220, 38, 38, 0.3); color: var(--red-accent); }
+.card-green .badge-icon { background: var(--green-accent); }
+.tag-green { border-color: rgba(22, 163, 74, 0.3); color: var(--green-accent); }
+.card-teal .badge-icon { background: var(--teal-accent); }
+.tag-teal { border-color: rgba(13, 148, 136, 0.3); color: var(--teal-accent); }
+
+/* Sakura Petals */
+.sakura-petal { position: absolute; background: #ffb7c5; border-radius: 150% 0 150% 0; pointer-events: none; animation: fall linear infinite; }
+@keyframes fall { 0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+
+:root {
+    --blue-accent: #228be6; /* Warna biru polisi */
+}
+
+/* Card Biru */
+.card-blue .badge-icon { background: var(--blue-accent); }
+.card-blue .avatar-ring { border-color: rgba(34, 139, 230, 0.2); }
+.tag-blue { border-color: rgba(34, 139, 230, 0.3); color: var(--blue-accent); }
+.card-blue .kanji-watermark { color: rgba(34, 139, 230, 0.05); }
+
+/* Warna Kanji Khusus Emperor (Merah) */
+.card-red .kanji-watermark {
+    color: rgba(220, 38, 38, 0.15) !important;
+    text-shadow: 0 0 20px rgba(220, 38, 38, 0.1);
+}
+
+/* Warna Kanji Khusus Prime Minister (Hijau) */
+.card-green .kanji-watermark {
+    color: rgba(34, 163, 74, 0.15) !important;
+    text-shadow: 0 0 20px rgba(34, 163, 74, 0.1);
+}
+
+/* Warna Kanji Khusus Government (Teal) */
+.card-teal .kanji-watermark {
+    color: rgba(13, 148, 136, 0.15) !important;
+    text-shadow: 0 0 20px rgba(13, 148, 136, 0.1);
+}
+
+/* Warna Kanji Khusus Police (Biru) */
+.card-blue .kanji-watermark {
+    color: rgba(34, 139, 230, 0.15) !important;
+    text-shadow: 0 0 20px rgba(34, 139, 230, 0.1);
+}
+
+/* Glow bawah khusus biru */
+.card-blue:after {
+    content: '';
+    position: absolute;
+    bottom: 0; width: 60%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--blue-accent), transparent);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Biar pas berhenti gak pas banget di atas (biar gak ketutup navbar) */
+.authority-section {
+    scroll-margin-top: 100px;
+}
+
+/* Efek Muncul Halus */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body {
+    background: radial-gradient(circle at top center, #1a0505 0%, #050505 100%);
+    background-attachment: fixed;
+}
+
+/* Tambahkan awan kabut merah samar di background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Sembunyikan kursor asli bawaan Windows */
+html, body {
+    cursor: none !important;
+}
+
+/* Titik Presisi */
+#cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #dc2626; /* Merah Emperor */
+    position: fixed;
+    top: 0; left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+    transition: width 0.3s, height 0.3s;
+}
+
+/* Lingkaran Luar yang "Mengejar" (Fluid) */
+#cursor-outline {
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(220, 38, 38, 0.5);
+    position: fixed;
+    top: 0; left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9998;
+    pointer-events: none;
+    /* Kita gak pake transition CSS di sini karena bakal diatur pake JS biar smooth */
+}
+
+/* Efek pas lagi di atas Link atau Tombol */
+.cursor-hover #cursor-dot {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(220, 38, 38, 0.1);
+    border: 1px solid #dc2626;
+}
+.cursor-hover #cursor-outline {
+    opacity: 0;
+}
+
+.moment-item-v2 {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.moment-item-v2:hover {
+    transform: translateY(-5px) rotate(1deg); /* Sedikit rotasi biar kerasa tumpukan foto */
+    z-index: 50;
+}
+
+/* Watermark ID transparan di tiap card */
+.moment-item-v2::after {
+    content: 'TOP SECRET';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 40px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.02);
+    z-index: 1;
+    pointer-events: none;
+    transform: rotate(-15deg);
+}
+
+/* Biar gambar gak kepotong aneh pas pindah kolom */
+.break-inside-avoid {
+    break-inside: avoid;
+    margin-bottom: 24px;
+}
+
+ @keyframes load {
+        0% { width: 0%; transform: translateX(-100%); }
+        50% { width: 100%; transform: translateX(0%); }
+        100% { width: 0%; transform: translateX(100%); }
+    }

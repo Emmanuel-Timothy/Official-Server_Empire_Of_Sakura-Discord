@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Empire of Sakura | Official Territory">
+    <meta property="og:description" content="Server kedaulatan Sakura. Episentrum Geopolitik, Anime, dan Umamusume.">
+    <meta property="og:image" content="img/Offical flag.jpg">
+    <meta name="theme-color" content="#dc2626">
+    <title>Empire of Sakura | Discord Server</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Ganti icon tab browser pake bendera lu -->
+    <link rel="icon" type="image/x-icon" href="img/upscalemedia-transformed.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body class="text-gray-200">
+
+    <!-- Container Sakura -->
+    <div id="sakura-container"></div>
+
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-[100] px-6 py-4 flex items-center justify-between backdrop-blur-md border-b border-white/5">
+        
+        <!-- 1. SISI KIRI: BRANDING -->
+        <div class="flex items-center gap-3 min-w-[200px]">
+            <div class="w-10 h-10 rounded-full overflow-hidden border border-red-600/50 bg-white flex items-center justify-center p-1 shadow-lg shadow-red-600/20">
+                <img src="img/Offical flag.jpg" class="w-full h-full object-contain aspect-square">
+            </div>
+            <span class="text-xl font-black tracking-tighter uppercase italic text-white">Empire of Sakura</span>
+        </div>
+
+        <!-- 2. SISI TENGAH: JAM (DIJAMIN TENGAH PAS) -->
+        <div class="absolute left-1/2 -translate-x-1/2 hidden lg:flex items-center gap-3">
+            <span class="text-[8px] font-black uppercase tracking-[0.2em] text-red-600 bg-red-600/10 px-1.5 py-0.5 rounded-sm">JST</span>
+            <span id="imperial-clock" class="text-xs font-black text-white tracking-[0.2em] tabular-nums">
+                00:00:00
+            </span>
+        </div>
+
+        <!-- 3. SISI KANAN: NAVIGASI & TOMBOL -->
+        <div class="flex items-center gap-8">
+            <!-- Links -->
+            <div class="hidden md:flex gap-8 text-[10px] font-black uppercase tracking-[0.3em]">
+                <a href="#" class="text-gray-400 hover:text-white transition-all">Home</a>
+                <a href="#rules" class="text-gray-400 hover:text-white transition-all">Rules</a>
+                <a href="#staff" class="text-gray-400 hover:text-white transition-all">About</a>
+            </div>
+            
+            <!-- Button Join -->
+            <a href="https://discord.gg/qd3XTgA6dq" class="bg-white text-black px-6 py-2 rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all duration-300">
+                Join Now
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
+        
+        <!-- Kita kasih absolute supaya dia melayang di background -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+            <img src="img/Offical flag.jpg" 
+                class="absolute w-[180%] md:w-[130%] max-w-none opacity-[0.04] grayscale brightness-150 animate-[spin_80s_linear_infinite]" 
+                style="mix-blend-mode: screen; z-index: 0;">
+        </div>
+
+        <!-- 2. KONTEN UTAMA (TETEP DI TENGAH) -->
+        <div class="z-10 text-center relative">
+            <span class="inline-block px-4 py-1 rounded-full border border-pink-500/30 text-pink-400 text-[10px] font-black tracking-[0.4em] mb-6 animate-pulse uppercase">
+                Welcome to the Empire
+            </span>
+            
+            <h1 class="text-6xl md:text-9xl font-black mb-6 leading-none italic uppercase">
+                EMPIRE OF <br>
+                <span class="bg-gradient-to-b from-white to-pink-500 bg-clip-text text-transparent neon-text tracking-tighter">SAKURA</span>
+            </h1>
+            
+            <p class="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+                Komunitas paling nyaman untuk bersantai, berbagi hobi, dan menjalin pertemanan baru di bawah langit malam yang estetis.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#staff" class="px-10 py-4 glass-card rounded-2xl font-black tracking-widest text-xs uppercase hover:bg-white hover:text-black transition-all">
+                    EXPLORE AUTHORITY
+                </a>
+            </div>
+        </div>
+        
+        <!-- Glow Decorative (Tetep di bawah) -->
+        <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-pink-600/10 rounded-full blur-[120px] -z-10"></div>
+        <div class="absolute top-[-10%] right-[-10%] w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[120px] -z-10"></div>
+    </section>
+
+    <!-- Live Status Section -->
+    <section class="py-10 px-6 max-w-4xl mx-auto">
+        <div class="glass-card p-6 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6 border-l-4 border-green-500">
+            <div class="flex items-center gap-4">
+                <!-- Status Glow Dot -->
+                <div class="relative">
+                    <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+                    <div class="absolute inset-0 w-4 h-4 bg-green-500 rounded-full animate-ping opacity-75"></div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold uppercase tracking-tight">Status Kekaisaran</h3>
+                    <p class="text-xs text-gray-500 uppercase font-bold tracking-widest">Live Updates</p>
+                </div>
+            </div>
+
+            <div class="flex gap-8 text-center">
+                <div>
+                    <span id="online-count" class="text-3xl font-black text-green-400 neon-text">...</span>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Online</p>
+                </div>
+                <div class="w-[1px] h-10 bg-white/10 hidden md:block"></div>
+                <div>
+                    <span id="total-count" class="text-3xl font-black text-white opacity-80">...</span>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Warga</p>
+                </div>
+            </div>
+
+            <a href="https://discord.gg/qd3XTgA6dq" class="bg-green-500/10 hover:bg-green-500 text-green-500 hover:text-black px-6 py-2 rounded-full border border-green-500/50 font-bold transition-all text-sm">
+                CHAT SEKARANG
+            </a>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 max-w-4xl mx-auto">
+        <!-- Central Community Card -->
+        <div class="authority-card p-12 md:p-16 border-b-2 border-red-600/30 relative overflow-hidden group shadow-2xl">
+            
+            <!-- Ikon Gabungan (Glow Merah) -->
+            <div class="flex gap-4 mb-10">
+                <div class="w-14 h-14 bg-red-600/10 rounded-2xl flex items-center justify-center text-red-600 shadow-[0_0_20px_rgba(220,38,38,0.2)] group-hover:scale-110 transition-transform duration-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <span class="text-[10px] font-black tracking-[0.4em] text-red-600 uppercase">Unified Sector</span>
+                    <h3 class="text-3xl font-black italic uppercase tracking-tighter text-white">Imperial Plaza</h3>
+                </div>
+            </div>
+
+            <!-- Deskripsi Gabungan -->
+            <div class="relative z-10">
+                <p class="text-gray-400 text-base md:text-lg leading-relaxed italic">
+                    "Pusat diplomasi dan hiburan rakyat kekaisaran. Mulai dari perundingan <span class="text-white font-bold">Geopolitik</span> yang strategis, apresiasi budaya <span class="text-pink-500 font-bold">Anime & Manga</span>, hingga arena kompetisi pacuan <span class="text-white font-bold">Umamusume</span> yang megah—semua terangkum dalam satu wadah persaudaraan bagi seluruh warga setia."
+                </p>
+            </div>
+
+            <!-- List Fitur Kecil di Bawah (Opsional biar makin pro) -->
+            <div class="mt-10 flex flex-wrap gap-6 border-t border-white/5 pt-8 opacity-60">
+                <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 bg-red-600 rounded-full"></span>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-300">Political Forum</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 bg-pink-500 rounded-full"></span>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-300">Anime Convention</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 bg-red-600 rounded-full"></span>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-300">Umamusume Club</span>
+                </div>
+            </div>
+
+            <!-- Kanji Background -->
+            <div class="absolute -bottom-6 -right-6 text-[12rem] font-black text-white/[0.02] pointer-events-none select-none italic">衆</div>
+        </div>
+    </section>
+
+    <!-- PM Welcome Section -->
+    <section class="py-20 px-6 max-w-5xl mx-auto">
+        <div class="glass-card rounded-[3rem] p-10 md:p-16 border-l-4 border-green-600 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden">
+            
+            <!-- Foto PM yang lu kirim -->
+            <div class="relative flex-shrink-0 group">
+                <div class="absolute -inset-2 bg-green-600 rounded-full blur-xl opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                <div class="relative w-48 h-48 md:w-56 md:h-56 rounded-full border-4 border-green-600 overflow-hidden shadow-2xl">
+                    <img src="img/Prime_Minister-removebg-preview.png" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                </div>
+                <!-- Badge Live Status -->
+                <div class="absolute bottom-2 right-6 bg-green-600 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-white border-4 border-[#0d0d0d] animate-pulse">
+                    Online
+                </div>
+            </div>
+
+            <!-- Teks Pesan -->
+            <div class="flex-1 text-center md:text-left z-10">
+                <span class="text-green-500 font-black text-[10px] tracking-[0.5em] uppercase mb-4 block">Message from the Prime Minister</span>
+                
+                <h2 class="text-3xl md:text-4xl font-black italic uppercase text-white mb-6 leading-tight">
+                    "Harmoni dalam <span class="text-green-500">Ketertiban</span>, Kekuatan dalam <span class="text-green-500">Kesetiaan</span>."
+                </h2>
+                
+                <p class="text-gray-400 text-sm md:text-base leading-relaxed italic mb-8">
+                    "Stabilitas Server kekaisaran adalah tanggung jawab mutlak. Selamat datang di wilayah kedaulatan kami, di mana setiap suara didengar dan setiap hukum ditegakkan demi harmoni bersama."
+                </p>
+
+                <div class="flex items-center justify-center md:justify-start gap-4">
+                    <div class="h-[1px] w-12 bg-green-600 opacity-50"></div>
+                    <span class="text-xs font-black uppercase tracking-[0.3em] text-white">ASdifta</span>
+                </div>
+            </div>
+
+            <!-- Kanji Watermark Background -->
+            <div class="absolute top-0 right-0 text-[15rem] font-black text-white/[0.02] pointer-events-none select-none italic translate-x-20 -translate-y-10">相</div>
+        </div>
+    </section>
+
+   <!-- Government & Staff Section -->
+    <section id="staff" class="authority-section">
+        <div id="sakura-container"></div>
+
+        <div class="container">
+            <header class="section-header">
+                <h2 class="title">The <span class="highlight">Authority</span></h2>
+                <div class="divider-main"></div>
+            </header>
+
+            <div class="staff-grid">
+                <!-- 1. EMPEROR (RED) -->
+                <div class="authority-card card-red">
+                    <div class="kanji-watermark">皇</div>
+                    <div class="avatar-wrapper">
+                        <div class="avatar-ring">
+                            <img data-discord-username="Edward sang King" 
+                                src="img/Symboli.Rudolf.full.4210968.jpg" 
+                                class="discord-avatar grayscale">
+                        </div>
+                        <div class="badge-icon">👑</div>
+                    </div>
+                    <h3 class="staff-name">Sang King Edward</h3>
+                    <div class="role-tag tag-red">
+                        <div class="status-dot"></div>
+                        <span class="role-text">Emperor</span>
+                    </div>
+                    <div class="card-line"></div>
+                    <p class="quote">"Memimpin dengan ketenangan, menjaga dengan keadilan."</p>
+                    <div class="bottom-glow"></div>
+                </div>
+
+                <!-- 2. PRIME MINISTER (GREEN) -->
+                <div class="authority-card card-green">
+                    <div class="kanji-watermark">相</div>
+                    <div class="avatar-wrapper">
+                        <div class="avatar-ring">
+                            <img data-discord-username="Asdifta" 
+                                src="img/Zenless.Zone.Zero.full.4650868.jpg" 
+                                class="discord-avatar grayscale">
+                        </div>
+                        <div class="badge-icon">🤵</div>
+                    </div>
+                    <h3 class="staff-name">Asdifta</h3>
+                    <div class="role-tag tag-green">
+                        <div class="status-dot"></div>
+                        <span class="role-text">Prime Minister</span>
+                    </div>
+                    <div class="card-line"></div>
+                    <p class="quote">"Mengatur roda pemerintahan demi kesejahteraan warga."</p>
+                    <div class="bottom-glow"></div>
+                </div>
+
+                <!-- 3. GOVERNMENT (TEAL) -->
+                <div class="authority-card card-teal">
+                    <div class="kanji-watermark">府</div>
+                    <div class="avatar-wrapper">
+                        <div class="avatar-ring">
+                            <img data-discord-username="Bapaknya Aston Machan" 
+                                src="img/Aston.Machan.full.4606900.jpg" 
+                                class="discord-avatar grayscale">
+                        </div>
+                        <div class="badge-icon">🤵</div>
+                    </div>
+                    <h3 class="staff-name">Bapaknya Aston Machan</h3>
+                    <div class="role-tag tag-teal">
+                        <div class="status-dot"></div>
+                        <span class="role-text">Government</span>
+                    </div>
+                    <div class="card-line"></div>
+                    <p class="quote">"Mengawasi ketertiban dan keamanan."</p>
+                    <div class="bottom-glow"></div>
+                </div>
+
+                 <div class="authority-card card-teal">
+                    <div class="kanji-watermark">府</div>
+                    <div class="avatar-wrapper">
+                        <div class="avatar-ring">
+                            <img data-discord-username="Diego Zalukhu" 
+                                src="img/Lee.jpg" 
+                                class="discord-avatar grayscale">
+                        </div>
+                        <div class="badge-icon">🤵</div>
+                    </div>
+                    <h3 class="staff-name">Diego Zalukhu</h3>
+                    <div class="role-tag tag-teal">
+                        <div class="status-dot"></div>
+                        <span class="role-text">Government</span>
+                    </div>
+                    <div class="card-line"></div>
+                    <p class="quote">"Menghubungkan suara rakyat dengan kekaisaran."</p>
+                    <div class="bottom-glow"></div>
+                </div>
+
+                 <div class="authority-card card-teal">
+                    <div class="kanji-watermark">府</div>
+                    <div class="avatar-wrapper">
+                        <div class="avatar-ring">
+                            <img data-discord-username="Frize" 
+                                src="img/Kurodate.Haruna.full.4085613.jpg" 
+                                class="discord-avatar grayscale">
+                        </div>
+                        <div class="badge-icon">🤵</div>
+                    </div>
+                    <h3 class="staff-name">Frize</h3>
+                    <div class="role-tag tag-teal">
+                        <div class="status-dot"></div>
+                        <span class="role-text">Government</span>
+                    </div>
+                    <div class="card-line"></div>
+                    <p class="quote">"Berdinas di bawah kekaisaran."</p>
+                    <div class="bottom-glow"></div>
+                </div>
+
+                <!-- 4. HEAD POLICE (BLUE) -->
+                <div class="authority-card card-blue">
+                    <div class="kanji-watermark">警</div>
+                    <div class="avatar-wrapper">
+                        <div class="avatar-ring">
+                            <!-- GANTI "Delta Thorn" KALO DI DISCORD NAMANYA BEDA -->
+                            <img data-discord-username="Delta Thorn" 
+                                src="img/Ijichi.Nijika.full.3845418.jpg" 
+                                class="discord-avatar grayscale">
+                        </div>
+                        <div class="badge-icon">🕵️‍♂️</div>
+                    </div>
+                    <h3 class="staff-name italic">Delta Thorn</h3>
+                    <div class="role-tag tag-blue">
+                        <div class="status-dot"></div>
+                        <span class="role-text">Head Police</span>
+                    </div>
+                    <div class="card-line"></div>
+                    <p class="quote">"Mengawasi ketertiban dari balik bayang-bayang."</p>
+                </div>
+
+                <!-- 5. POLICE FORCE (BLUE) -->
+                <div class="authority-card card-blue">
+                    <div class="kanji-watermark">察</div>
+                    <div class="avatar-wrapper">
+                        <div class="avatar-ring">
+                            <!-- SESUAIIN USERNAME NYA (HARUS SAMA PERSIS SAMA DISCORD) -->
+                            <img data-discord-username="Дмитри Бусинов" 
+                                src="img/Igusa.Haruka.full.4426867.jpg" 
+                                class="discord-avatar grayscale">
+                        </div>
+                        <div class="badge-icon">👮</div>
+                    </div>
+                    <h3 class="staff-name italic">Дмитри Бусинов</h3>
+                    <div class="role-tag tag-blue">
+                        <div class="status-dot"></div>
+                        <span class="role-text">Police Force</span>
+                    </div>
+                    <div class="card-line"></div>
+                    <p class="quote">"Siap siaga 24/7 menjaga kedamaian warga."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Empire Moments Section - Imperial Archives Edition -->
+    <section id="moments" class="py-24 px-6 bg-[#050505] relative overflow-hidden reveal">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Header Galeri -->
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 relative z-10">
+                <div>
+                    <span class="text-[9px] font-black tracking-[0.6em] text-red-600 uppercase mb-2 block animate-pulse">Imperial Archives</span>
+                    <h2 class="text-5xl font-black italic uppercase tracking-tighter text-white">
+                        Empire <span class="text-imperial italic uppercase">Moments</span>
+                    </h2>
+                    <p class="text-gray-600 mt-4 text-xs font-medium italic border-l border-red-600 pl-4 max-w-md">
+                        "Dokumentasi kedaulatan warga Sakura. Setiap interaksi adalah sejarah yang layak diabadikan."
+                    </p>
+                </div>
+                <a href="https://discord.gg/qd3XTgA6dq" class="group flex items-center gap-3 text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-red-500 transition-all duration-500">
+                    View Full Album <span class="group-hover:translate-x-2 transition-transform">→</span>
+                </a>
+            </div>
+
+            <!-- Grid Galeri Masonry -->
+            <div class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+                
+                <!-- Moment 1: Winner in Osaka Hai -->
+                <div class="moment-item-v2 relative group break-inside-avoid">
+                    <div class="absolute -inset-0.5 bg-red-600/10 rounded-[2rem] blur-sm group-hover:bg-red-600/20 transition-all duration-700"></div>
+                    <div class="relative bg-[#0a0a0a] border border-white/5 rounded-[2rem] overflow-hidden shadow-2xl">
+                        <div class="bg-white/5 px-6 py-3 flex items-center justify-between border-b border-white/5">
+                            <div class="flex gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-red-600"></div><div class="w-1.5 h-1.5 rounded-full bg-white/10"></div></div>
+                            <span class="text-[8px] font-black text-gray-600 tracking-widest italic uppercase">Sector: Umamusume</span>
+                        </div>
+                        <div class="overflow-hidden">
+                            <img src="memorial/Memorial 1.png" class="w-full grayscale group-hover:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-1000 brightness-75 group-hover:brightness-110">
+                        </div>
+                        <div class="p-6 bg-gradient-to-t from-black to-transparent">
+                            <h4 class="text-white font-black italic uppercase text-[11px] tracking-widest">Winner in Osaka Hai</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Moment 2: a place to vent -->
+                <div class="moment-item-v2 relative group break-inside-avoid">
+                    <div class="absolute -inset-0.5 bg-red-600/10 rounded-[2rem] blur-sm group-hover:bg-red-600/20 transition-all duration-700"></div>
+                    <div class="relative bg-[#0a0a0a] border border-white/5 rounded-[2rem] overflow-hidden shadow-2xl">
+                        <div class="bg-white/5 px-6 py-3 flex items-center justify-between border-b border-white/5">
+                            <div class="flex gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-red-600"></div><div class="w-1.5 h-1.5 rounded-full bg-white/10"></div></div>
+                            <span class="text-[8px] font-black text-gray-600 tracking-widest italic uppercase">Sector: Social</span>
+                        </div>
+                        <div class="overflow-hidden">
+                            <img src="memorial/Memorial 2.png" class="w-full grayscale group-hover:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-1000 brightness-75 group-hover:brightness-110">
+                        </div>
+                        <div class="p-6 bg-gradient-to-t from-black to-transparent">
+                            <h4 class="text-white font-black italic uppercase text-[11px] tracking-widest">A place to vent</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Moment 3: foreign Politic Discussion -->
+                <div class="moment-item-v2 relative group break-inside-avoid">
+                    <div class="absolute -inset-0.5 bg-red-600/10 rounded-[2rem] blur-sm group-hover:bg-red-600/20 transition-all duration-700"></div>
+                    <div class="relative bg-[#0a0a0a] border border-white/5 rounded-[2rem] overflow-hidden shadow-2xl">
+                        <div class="bg-white/5 px-6 py-3 flex items-center justify-between border-b border-white/5">
+                            <div class="flex gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-red-600"></div><div class="w-1.5 h-1.5 rounded-full bg-white/10"></div></div>
+                            <span class="text-[8px] font-black text-gray-600 tracking-widest italic uppercase">Sector: Politics</span>
+                        </div>
+                        <div class="overflow-hidden">
+                            <img src="memorial/Memorial 3.png" class="w-full grayscale group-hover:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-1000 brightness-75 group-hover:brightness-110">
+                        </div>
+                        <div class="p-6 bg-gradient-to-t from-black to-transparent">
+                            <h4 class="text-white font-black italic uppercase text-[11px] tracking-widest">Foreign Politic Discussion</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Moment 4: Self Defense Umamusume -->
+                <div class="moment-item-v2 relative group break-inside-avoid">
+                    <div class="absolute -inset-0.5 bg-red-600/10 rounded-[2rem] blur-sm group-hover:bg-red-600/20 transition-all duration-700"></div>
+                    <div class="relative bg-[#0a0a0a] border border-white/5 rounded-[2rem] overflow-hidden shadow-2xl">
+                        <div class="bg-white/5 px-6 py-3 flex items-center justify-between border-b border-white/5">
+                            <div class="flex gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-red-600"></div><div class="w-1.5 h-1.5 rounded-full bg-white/10"></div></div>
+                            <span class="text-[8px] font-black text-gray-600 tracking-widest italic uppercase">Sector: Arena</span>
+                        </div>
+                        <div class="overflow-hidden">
+                            <img src="memorial/Memorial 4.png" class="w-full grayscale group-hover:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-1000 brightness-75 group-hover:brightness-110">
+                        </div>
+                        <div class="p-6 bg-gradient-to-t from-black to-transparent">
+                            <h4 class="text-white font-black italic uppercase text-[11px] tracking-widest">Self Defense Umamusume</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Moment 5: Anime Discussion -->
+                <div class="moment-item-v2 relative group break-inside-avoid">
+                    <div class="absolute -inset-0.5 bg-red-600/10 rounded-[2rem] blur-sm group-hover:bg-red-600/20 transition-all duration-700"></div>
+                    <div class="relative bg-[#0a0a0a] border border-white/5 rounded-[2rem] overflow-hidden shadow-2xl">
+                        <div class="bg-white/5 px-6 py-3 flex items-center justify-between border-b border-white/5">
+                            <div class="flex gap-1.5"><div class="w-1.5 h-1.5 rounded-full bg-red-600"></div><div class="w-1.5 h-1.5 rounded-full bg-white/10"></div></div>
+                            <span class="text-[8px] font-black text-gray-600 tracking-widest italic uppercase">Sector: Culture</span>
+                        </div>
+                        <div class="overflow-hidden">
+                            <img src="memorial/Memorial 5.png" class="w-full grayscale group-hover:grayscale-0 scale-100 group-hover:scale-110 transition-all duration-1000 brightness-75 group-hover:brightness-110">
+                        </div>
+                        <div class="p-6 bg-gradient-to-t from-black to-transparent">
+                            <h4 class="text-white font-black italic uppercase text-[11px] tracking-widest">Anime Discussion</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="rules" class="py-24 px-6 max-w-6xl mx-auto">
+        <!-- Card Utama Rules -->
+        <div class="glass-card rounded-[3rem] p-10 md:p-16 border-l-4 border-red-600 relative overflow-hidden shadow-2xl">
+            
+            <!-- Header -->
+            <div class="flex items-center gap-4 mb-16">
+                <div class="w-10 h-[2px] bg-red-600"></div>
+                <h2 class="text-3xl font-black uppercase italic tracking-wider text-white">Rule of the state</h2>
+            </div>
+
+            <!-- Grid Rules (2 Kolom biar rapi) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+                
+                <!-- Rule 01 -->
+                <div class="flex gap-6 group">
+                    <span class="text-4xl font-black text-white/5 group-hover:text-red-600/20 transition-colors duration-500">01</span>
+                    <div>
+                        <h4 class="text-red-500 font-black text-xs uppercase tracking-[0.2em] mb-2">Anti-Bullying Law</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed italic">"Jangan merundung sesama warga kekaisaran. Kedamaian dan rasa hormat adalah hukum tertinggi kami."</p>
+                    </div>
+                </div>
+
+                <!-- Rule 02 -->
+                <div class="flex gap-6 group">
+                    <span class="text-4xl font-black text-white/5 group-hover:text-red-600/20 transition-colors duration-500">02</span>
+                    <div>
+                        <h4 class="text-red-500 font-black text-xs uppercase tracking-[0.2em] mb-2">Zero Raid Policy</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed italic">"Dilarang melakukan Raid dalam bentuk apapun. Pelanggaran terhadap kedaulatan server akan dikenakan Sanksi Tegas."</p>
+                    </div>
+                </div>
+
+                <!-- Rule 03 -->
+                <div class="flex gap-6 group">
+                    <span class="text-4xl font-black text-white/5 group-hover:text-red-600/20 transition-colors duration-500">03</span>
+                    <div>
+                        <h4 class="text-red-500 font-black text-xs uppercase tracking-[0.2em] mb-2">Collective Harmony</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed italic">"Dilarang melakukan tindakan yang merugikan pihak lain. Pastikan setiap langkahmu menjaga kenyamanan bersama."</p>
+                    </div>
+                </div>
+
+                <!-- Rule 04 -->
+                <div class="flex gap-6 group">
+                    <span class="text-4xl font-black text-white/5 group-hover:text-red-600/20 transition-colors duration-500">04</span>
+                    <div>
+                        <h4 class="text-red-500 font-black text-xs uppercase tracking-[0.2em] mb-2">Freedom Of Speech</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed italic">"Hak warga negara dilindungi. Dilarang membungkam kebebasan untuk bersuara di wilayah kekaisaran."</p>
+                    </div>
+                </div>
+
+                <!-- Rule 05 (Center on Mobile, Left on Desktop) -->
+                <div class="flex gap-6 group md:col-span-2">
+                    <span class="text-4xl font-black text-white/5 group-hover:text-red-600/20 transition-colors duration-500">05</span>
+                    <div>
+                        <h4 class="text-red-500 font-black text-xs uppercase tracking-[0.2em] mb-2">Open Criticism</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed italic">"Kritik adalah pilar kemajuan. Dilarang membungkam kritikan orang lain demi transparansi kekaisaran."</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Hiasan Watermark Kanji di Pojok -->
+            <div class="absolute -bottom-10 -right-10 text-[12rem] font-black text-white/[0.02] pointer-events-none select-none italic">律</div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-[10px] font-black tracking-[0.5em] text-pink-500 uppercase mb-2 block">Citizens Voice</span>
+                <h2 class="text-4xl font-black italic uppercase tracking-tighter text-white">Suara <span class="text-pink-500">Warga</span></h2>
+            </div>
+            
+            <!-- Testimonial Card Tunggal (Biar lebih fokus) -->
+            <div class="glass-card p-12 rounded-[3rem] relative overflow-hidden group border-l-4 border-pink-500">
+                <div class="absolute top-8 left-10 text-pink-500/20 text-9xl font-serif">“</div>
+                <p class="text-gray-300 text-lg md:text-xl italic mb-10 relative z-10 leading-relaxed">
+                    "I enjoy being in the server it's good idk what else to say"
+                </p>
+
+                <div class="flex items-center gap-5 relative z-10">
+                    <!-- Foto Live Massachusetts husband -->
+                    <img data-discord-username="Massachusetts husband ☪️" 
+                        src="https://cdn.discordapp.com/embed/avatars/2.png" 
+                        class="discord-avatar w-16 h-16 rounded-full object-cover border-2 border-pink-500/30">
+                    <div>
+                        <h5 class="font-bold text-white text-lg">Massachusetts husband</h5>
+                        <span class="text-xs font-black uppercase tracking-[0.2em] text-pink-500 bg-pink-950/20 px-2 py-1 rounded-md">AZUR</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 reveal">
+        <div class="max-w-5xl mx-auto glass-card rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden border border-red-600/20">
+            
+            <!-- Efek Cahaya Merah Samar di Background Card -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-red-600/5 blur-[120px] pointer-events-none"></div>
+
+            <div class="relative z-10">
+                <span class="text-[10px] font-black tracking-[0.5em] text-red-600 uppercase mb-6 block animate-pulse">Panggilan Kedaulatan</span>
+                
+                <h2 class="text-4xl md:text-6xl font-black italic leading-tight uppercase tracking-tighter text-white mb-8">
+                    Siap Menjadi Bagian Dari <br>
+                    <span class="text-imperial italic">Warga Sakura?</span>
+                </h2>
+                
+                <p class="text-gray-400 mb-12 text-sm md:text-base max-w-xl mx-auto italic leading-relaxed">
+                    "Jadilah bagian dari sejarah. Klik tombol di bawah untuk memasuki gerbang kekaisaran dan mulailah petualanganmu bersama warga setia lainnya."
+                </p>
+                
+                <!-- Tombol Join Gahar -->
+                <a href="https://discord.gg/qd3XTgA6dq" class="group relative inline-flex items-center gap-4 bg-red-600 hover:bg-white text-white hover:text-black px-12 py-5 rounded-2xl font-black text-sm uppercase tracking-[0.2em] transition-all duration-500 shadow-[0_10px_40px_rgba(220,38,38,0.3)] hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] transform hover:-translate-y-2">
+                    Join Discord Server
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-2 transition-transform"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+
+                <!-- Info Live Online (Sinkron sama Script) -->
+                <div class="mt-10 flex items-center justify-center gap-3 opacity-50">
+                    <div class="w-2 h-2 bg-green-500 rounded-full animate-ping"></div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-white">
+                        <span id="online-count-footer">...</span> Warga Sedang Aktif
+                    </span>
+                </div>
+            </div>
+
+            <!-- Kanji Background Samar -->
+            <div class="absolute -bottom-10 -left-10 text-[15rem] font-black text-white/[0.02] pointer-events-none select-none italic rotate-12">入</div>
+        </div>
+    </section>
+
+    <!-- Footer Section (masih bertahap, link belum ada) -->
+    <footer class="bg-[#080808] border-t border-white/5 pt-24 pb-12 px-6 relative overflow-hidden">
+        <!-- Garis Dekorasi Merah di Atas Footer -->
+        <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-30"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                
+                <!-- 1. BRANDING (Sisi Kiri - Dibuat Lebih Compact) -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center text-white font-black italic shadow-[0_0_15px_rgba(220,38,38,0.5)]">S</div>
+                        <h3 class="text-xl font-black italic uppercase tracking-tighter text-white">Sakura <span class="text-red-600">Empire</span></h3>
+                    </div>
+                    <p class="text-gray-500 text-[11px] leading-relaxed italic max-w-xs">
+                        "Server kedaulatan <span class="text-white font-bold">Sakura</span>. Episentrum Geopolitik, Anime, dan Umamusume dalam satu wadah persatuan seluruh warga setia."
+                    </p>
+                </div>
+
+                <!-- 2. NAVIGASI (Dibuat Lebih Berwibawa) -->
+                <div>
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-white mb-8 border-l-2 border-red-600 pl-4">Peta Wilayah</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-500 hover:text-white text-xs font-bold italic transition-all group flex items-center gap-2">
+                            <span class="w-0 group-hover:w-2 h-[1px] bg-red-600 transition-all"></span> Gerbang Utama
+                        </a></li>
+                        <li><a href="#staff" class="text-gray-500 hover:text-white text-xs font-bold italic transition-all group flex items-center gap-2">
+                            <span class="w-0 group-hover:w-2 h-[1px] bg-red-600 transition-all"></span> Dewan Otoritas
+                        </a></li>
+                        <li><a href="#rules" class="text-gray-500 hover:text-white text-xs font-bold italic transition-all group flex items-center gap-2">
+                            <span class="w-0 group-hover:w-2 h-[1px] bg-red-600 transition-all"></span> Hukum Negara
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- 3. EKSPANSI (Info Tambahan) -->
+                <div>
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-white mb-8 border-l-2 border-red-600 pl-4">Hubungi Kami</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-500 hover:text-white text-xs font-bold italic transition-all group flex items-center gap-2">
+                            <span class="w-0 group-hover:w-2 h-[1px] bg-red-600 transition-all"></span> Kerjasama Diplomatik
+                        </a></li>
+                        <li><a href="#" class="text-gray-500 hover:text-white text-xs font-bold italic transition-all group flex items-center gap-2">
+                            <span class="w-0 group-hover:w-2 h-[1px] bg-red-600 transition-all"></span> Bantuan Warga
+                        </a></li>
+                    </ul>
+                </div>
+
+                <!-- 4. SOCIALS (Dibuat Simetris) -->
+                <div class="flex flex-col items-start md:items-end">
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.4em] text-white mb-8 md:text-right w-full">Jalur Komunikasi</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center text-gray-500 hover:text-red-600 hover:border-red-600 transition-all shadow-xl group">
+                            <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                        <a href="#" class="w-12 h-12 rounded-2xl glass-card flex items-center justify-center text-gray-500 hover:text-red-600 hover:border-red-600 transition-all shadow-xl group">
+                            <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.59-5.75-.29-4.36 4.12-7.83 8.12-6.09.01 1.45-.01 2.9 0 4.35-.93-.57-2.11-.63-3.1-.23-.84.34-1.51 1.05-1.78 1.9-.34.99-.18 2.12.39 3 1.05 1.55 3.51 1.83 4.91.56.63-.56.98-1.38.99-2.25.03-3.95.01-7.9.02-11.85z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTTOM BAR (Dibuat Sangat Clean) -->
+            <div class="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em]">
+                    © 2026 Empire of Sakura. Built with Passion by <span class="text-white">Alfinsa Pudya Pratama</span>.
+                </p>
+                <div class="flex gap-8">
+                    <a href="#rules" class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-600 hover:text-red-600 transition-all">Konstitusi</a>
+                    <a href="#" class="text-[9px] font-black uppercase tracking-[0.2em] text-gray-600 hover:text-red-600 transition-all">Hak Warga</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="loader" class="fixed inset-0 z-[9999] bg-[#050505] flex flex-col items-center justify-center transition-all duration-1000">
+        <div class="relative flex flex-col items-center">
+            <!-- Logo Lu -->
+            <img src="img/Offical flag.jpg" class="w-32 h-32 rounded-full border-4 border-red-600 shadow-[0_0_50px_rgba(220,38,38,0.5)] animate-pulse">
+            <h2 class="mt-8 text-xl font-black italic uppercase tracking-[0.5em] text-white animate-pulse">Empire of Sakura</h2>
+            <!-- Loading Bar Kecil -->
+            <div class="w-48 h-[2px] bg-white/5 mt-6 rounded-full overflow-hidden">
+                <div class="h-full bg-red-600 animate-[load_2s_ease-in-out_infinite]"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
